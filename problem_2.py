@@ -16,8 +16,10 @@ def find_files(suffix, dirpath, findfiles=[]):
     Returns:
        a list of paths
     """
-    assert dirpath!=None, "You should enter the path!"
-    assert len(dirpath) != 0, "You should enter the path!"
+    if dirpath == None:
+        return "Path format is wrong!"
+    if len(dirpath) == 0:
+        return "Path format is wrong!"
     if not suffix:
         suffix = ""
     for filepath in os.listdir(dirpath):
@@ -28,8 +30,8 @@ def find_files(suffix, dirpath, findfiles=[]):
             findfiles.append(filepath)
     return findfiles
 
-#print(find_files('.c','./testdir'))
-#print(find_files(None,'./testdir'))
-#print(find_files('.c',None))
-print(find_files('.c',''))
+print(find_files('.c','./testdir')) #return .c files
+print(find_files(None,'./testdir')) #return all files
+print(find_files('.c',None)) #return attention
+print(find_files('.c','')) #return attention
 

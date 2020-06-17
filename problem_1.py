@@ -33,19 +33,25 @@ class LRU_Cache(object):
             self._keys.insert(0,key)
             self._cache[key] = value
 
-our_cache = LRU_Cache(5)
+def test(number):
+    our_cache = LRU_Cache(number)
+    for i in range(1,number+1):
+        our_cache.set(i, i)
+    for i in range(1,number+1):
+        print(our_cache.get(i)) #return i
+    #edge case
+    print(our_cache.get(number+5))
 
-our_cache.set(1, 1)
-our_cache.set(2, 2)
-our_cache.set(3, 3)
-our_cache.set(4, 4)
 
+# test case1
+print("NEW TEST :")
+test(5)  #test set and get function ,then print all, including edge case
 
-print(our_cache.get(1))     # returns 1
-print(our_cache.get(2))     # returns 2
-print(our_cache.get(9))      # returns -1 because 9 is not present in the cache
+# test case2
+print("NEW TEST :")
+test(0)  #test set and get function ,then print all, including edge case
 
-our_cache.set(5, 5)
-our_cache.set(6, 6)
+# test case3
+print("NEW TEST :")
+test(7)  #test set and get function ,then print all, including edge case
 
-print(our_cache.get(3))      # returns -1 because the cache reached it's capacity and 3 was the least recently used entry

@@ -8,7 +8,7 @@ class Block:
       self.hash = self.calc_hash()
     def calc_hash(self):
         newsha = hashlib.sha256()
-        newhash = self.data.encode('utf-8')
+        newhash = self.data.encode('utf-8')+self.timestamp.encode('utf-8')
         newsha.update(newhash)
         return newsha.hexdigest()
 
@@ -34,9 +34,20 @@ if __name__ == '__main__':
     block3 = Block(nowtime(), "I'm block3", block2)
     block4 = Block(nowtime(), "I'm block4", block3)
     newlist = LinkedList()
-    newlist.append(nowtime(),"I'm block5")
-    newlist.append(nowtime(), "I'm block6")
+    
+    
+    #test block0
     print(str(block0.data) + " " + str(block0.hash) )
+    #test block1
     print(str(block1.data) + " " + str(block1.hash) )
-    #(block4.data + " " + block4.hash + " " + block4.previous_hash)
+    #test block2
+    print(str(block2.data) + " " + str(block2.hash) )
+    #test block3
+    print(str(block3.data) + " " + str(block3.hash) )
+    #test append once
+    newlist.append(nowtime(),"I'm block5")
+    #test append twice
+    newlist.append(nowtime(), "I'm block6")
+    print(str(newlist.head.data) + " " + str(newlist.head.hash))
     print(str(newlist.next.data) + " " + str(newlist.next.hash))
+    
